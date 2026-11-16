@@ -1,3 +1,44 @@
+# Barenn: resumo executivo
+
+Resultado idêntico ao legado em **todas** as versões (hash FNV-1a dos pesos finais e perdas por época, `366b333cd5264116` / `0b1dad0f07974985`). Medições: mediana de 9, nó exclusivo, Franky (i7-13700 / RTX A1000). Detalhes em [`docs/RESULTADOS.md`](docs/RESULTADOS.md); ordem de commits em [`docs/roteiro_git.md`](docs/roteiro_git.md).
+
+| Versão | Treino (s) | Wall (s) | vs legado | Corretude | Issue | Tag |
+|---|---|---|---|---|---|---|
+| **Baseline Legado** (`-O3`) | 0,354 (CPU) / 0,309 (nó GPU) | 0,380 / 0,332 | 1,00× | referência | [#1](https://github.com/gcr2001/awful-barenn/issues/1) | [v0.1-baseline](https://github.com/gcr2001/awful-barenn/releases/tag/v0.1-baseline) |
+| CPU v1: sem trabalho morto | 0,169 | 0,195 | 2,09× | hash OK | [#2](https://github.com/gcr2001/awful-barenn/issues/2) | [v0.2-cpu-trabalho-morto](https://github.com/gcr2001/awful-barenn/releases/tag/v0.2-cpu-trabalho-morto) |
+| CPU v2: SIMD entre neurônios | 0,0367 | 0,061 | 9,65× | hash OK | [#3](https://github.com/gcr2001/awful-barenn/issues/3) | [v0.3-cpu-simd](https://github.com/gcr2001/awful-barenn/releases/tag/v0.3-cpu-simd) |
+| **CPU Otimizada** (v3, multicore) | 0,0382 | **0,041** | **9,27× (wall)** | hash OK | [#4](https://github.com/gcr2001/awful-barenn/issues/4) | [v0.4-cpu-multicore](https://github.com/gcr2001/awful-barenn/releases/tag/v0.4-cpu-multicore) |
+| **CUDA Inicial** (v1) | 3,661 | 5,788 | 11,9× mais lento | hash OK | [#5](https://github.com/gcr2001/awful-barenn/issues/5) | [v0.5-cuda-port](https://github.com/gcr2001/awful-barenn/releases/tag/v0.5-cuda-port) |
+| CUDA v2: kernel fundido | 0,969 | 3,097 | 3,1× mais lento | hash OK | [#6](https://github.com/gcr2001/awful-barenn/issues/6) | [v0.6-cuda-kernel-fundido](https://github.com/gcr2001/awful-barenn/releases/tag/v0.6-cuda-kernel-fundido) |
+| CUDA v3: persistente | 0,443 | 2,546 | 1,4× mais lento | hash OK | [#7](https://github.com/gcr2001/awful-barenn/issues/7) | [v0.7-cuda-persistente](https://github.com/gcr2001/awful-barenn/releases/tag/v0.7-cuda-persistente) |
+| **CUDA Otimizado** (v4) | 0,280 | 2,381 | 1,10× mais rápido (treino) | hash OK | [#8](https://github.com/gcr2001/awful-barenn/issues/8) | [v0.8-cuda-latencia](https://github.com/gcr2001/awful-barenn/releases/tag/v0.8-cuda-latencia) |
+
+Linhas CPU medidas no nó de CPU; linhas CUDA comparadas ao legado do nó de GPU (0,309 s). Entrega final: tag [v1.0-entrega](https://github.com/gcr2001/awful-barenn/releases/tag/v1.0-entrega).
+
+## Achados principais
+
+- **Gargalo da CPU = instruções, não memória.** Callgrind: `Backward` 67 %, cache miss 0 %; 75 % do cálculo de `grad_in` era trabalho morto. SIMD entre neurônios (sem reassociar a soma, sem FMA) dá 9,65×.
+- **O SGD é sequencial** (cada amostra depende dos pesos da anterior). Só leitura/avaliação são paralelizáveis com resultado exato; OpenMP dentro da amostra foi 12–14× mais lento (medido).
+- **A GPU não vence a CPU otimizada**: 2.720 pesos e ~15 k FLOP por passo, 15 k+ passos seriais, então o custo é latência por passo. CUDA v4 é 13× melhor que o v1 (nsys + `clock64()`), mas 7,2× mais lenta que a CPU v2. No dataset 100× maior: CPU v3 3,81 s, CUDA v4 24,40 s, legado 30,57 s.
+- Acelerar a GPU de verdade exigiria mini-batch/Hogwild, que muda o algoritmo e o resultado (trabalho futuro).
+
+## Índice
+
+| Item | Link |
+|---|---|
+| Resultados, metodologia e análise (Amdahl, roofline, PCIe) | [docs/RESULTADOS.md](docs/RESULTADOS.md) |
+| Roteiro de branches/commits/tags | [docs/roteiro_git.md](docs/roteiro_git.md) |
+| Rascunhos das Issues | [docs/issues/](docs/issues/) |
+| Evidências brutas (callgrind, nsys, benchmarks) | [docs/evidencias/](docs/evidencias/) |
+| Gráficos | [docs/img/](docs/img/) |
+| Código CPU / CUDA | [src/](src/) |
+| Harness e scripts | [scripts/](scripts/), [Makefile](Makefile), [ref/](ref/) |
+| Testes e experimentos (OpenMP, CUDA Graph) | [tests/](tests/), [experimentos/](experimentos/) |
+
+Limitações: Nsight Compute indisponível no Franky (`ERR_NVGPUCTRPERM`); uma única GPU; Santos Dumont não rodado.
+
+---
+
 # Projeto Barenn: O Legado, a Sobrevivência e o Salto para a GPU
 
 Era uma segunda-feira aparentemente tranquila quando a demanda chegou à sua mesa. A liderança técnica se aproximou com um sorriso contido e soltou aquela frase clássica que faz qualquer engenheiro gelar por dentro:
