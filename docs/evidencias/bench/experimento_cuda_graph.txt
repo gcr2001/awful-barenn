@@ -1,0 +1,6 @@
+# no: compute20  data: 2026-11-06 12:45:16
+# gpu: NVIDIA RTX A1000, 1462 MHz, 2100 MHz, 58
+binario                treino_min treino_med   wall_med  carga_med  corretude
+cuda_v1                    3.6483     3.6577     5.8130     0.0246  OK(texto+hash)
+exp_cuda_v1_graph          2.6674     2.6753     4.8135     0.0245  OK(texto+hash)
+cuda_v2                    0.9563     0.9622     3.1153     0.0246  OK(texto+hash)

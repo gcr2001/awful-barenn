@@ -1,0 +1,5 @@
+ Time (%)  Total Time (ns)  Count  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)           Operation          
+ --------  ---------------  -----  --------  --------  --------  --------  -----------  ----------------------------
+     90.6          123,518      9  13,724.2     512.0       384    79,103     27,728.4  [CUDA memcpy Host-to-Device]
+      9.4           12,800      8   1,600.0     976.0       768     6,144      1,842.8  [CUDA memcpy Device-to-Host]
+

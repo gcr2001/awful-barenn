@@ -1,0 +1,20 @@
+# callgrind legado -O2 -g (primeira analise)
+14,026,773,453 (100.0%) 4,649,349,983 (100.0%) 774,626,007 (100.0%)  PROGRAM TOTALS
+Ir                     Dr                     Dw                    file:function
+--------------------------------------------------------------------------------
+9,450,612,091 (67.38%) 3,234,992,016 (69.58%) 578,289,918 (74.65%)  barenn.cpp:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float) [/home/gabrielcr2/scratch/barenn/base_O2g
+3,342,228,372 (23.83%) 1,078,200,842 (23.19%)  26,711,622 ( 3.45%)  barenn.cpp:main [/home/gabrielcr2/scratch/barenn/base_O2g]
+  188,966,340 ( 1.35%)    59,030,943 ( 1.27%)  32,452,085 ( 4.19%)  ???:_int_free [/usr/lib64/libc.so.6]
+  155,978,400 ( 1.11%)    36,264,978 ( 0.78%)   5,849,190 ( 0.76%)  /opt/ohpc/pub/compiler/gcc/14.2.0/include/c++/14.2.0/bits/stl_vector.h:Barenn::DenseLayer::Backward(std::vector<float, std::allocato
+  126,675,878 ( 0.90%)    32,412,563 ( 0.70%)  17,668,142 ( 2.28%)  ???:malloc [/usr/lib64/libc.so.6]
+   73,664,906 ( 0.53%)    23,572,768 ( 0.51%)  11,786,386 ( 1.52%)  ???:free [/usr/lib64/libc.so.6]
+   63,608,365 ( 0.45%)    11,824,944 ( 0.25%)   7,034,645 ( 0.91%)  ???:____strtof_l_internal [/usr/lib64/libc.so.6]
+   54,982,550 ( 0.39%)    18,327,561 ( 0.39%)   6,434,117 ( 0.83%)  /opt/ohpc/pub/compiler/gcc/14.2.0/include/c++/14.2.0/bits/stl_vector.h:main
+   54,949,902 ( 0.39%)    15,674,671 ( 0.34%)  12,087,912 ( 1.56%)  ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::_M_extract_float(std::istreambuf_iterator<char, st
+
+# linhas quentes (barenn.cpp)
+95:    1,770,930 ( 0.01%)          last_input = input;
+103:1,605,643,200 (11.45%)                  sum += input[j] * weights[i][j];
+126:2,121,306,240 (15.12%)                  sum += delta[j] * weights[j][i];
+135:3,181,959,360 (22.68%)                  weights[i][j] -= learning_rate * (delta[i] * last_input[j]);
+137:   56,542,170 ( 0.40%)              bias[i] -= learning_rate * delta[i];

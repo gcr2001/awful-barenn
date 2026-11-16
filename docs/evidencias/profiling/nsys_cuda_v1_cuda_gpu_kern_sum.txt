@@ -1,0 +1,8 @@
+ Time (%)  Total Time (ns)  Instances  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)                                                  Name                                                
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ----------------------------------------------------------------------------------------------------
+     44.0       33,583,840     11,469   2,928.2   2,271.0     1,248     5,824      1,426.8  k_forward(const float *, const int *, int, const float *, const float *, float *, float *, int, int…
+     21.2       16,188,754     11,469   1,411.5   1,408.0     1,055     1,536         75.7  k_atualizar(const float *, const float *, const float *, const int *, int, float *, float *, float,…
+     18.7       14,286,500      7,646   1,868.5   1,856.0     1,408     2,048         76.0  k_grad_entrada(const float *, const float *, const float *, float *, int, int, bool)                
+      9.9        7,576,199      3,823   1,981.7   1,984.0     1,536     2,368         68.6  k_perda(const float *, const int *, const int *, float *, double *)                                 
+      6.2        4,745,073      3,823   1,241.2   1,248.0       960     1,280         42.8  k_avancar(int *)                                                                                    
+

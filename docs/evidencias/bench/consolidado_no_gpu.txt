@@ -1,0 +1,12 @@
+######## NO DE GPU (i9-14900 + RTX A1000) ########
+# no: compute20  data: 2026-11-06 12:40:54
+# gpu: NVIDIA RTX A1000, 1462 MHz, 2100 MHz, 59
+binario                treino_min treino_med   wall_med  carga_med  corretude
+legado                     0.3084     0.3088     0.3319          -  OK(texto)
+cpu_v1                     0.1447     0.1455     0.1686     0.0190  OK(texto+hash)
+cpu_v2                     0.0383     0.0386     0.0617     0.0192  OK(texto+hash)
+cpu_v3                     0.0394     0.0394     0.0436     0.0005  OK(texto+hash)
+cuda_v1                    3.6571     3.6614     5.7878     0.0191  OK(texto+hash)
+cuda_v2                    0.9616     0.9687     3.0973     0.0191  OK(texto+hash)
+cuda_v3                    0.4429     0.4434     2.5464     0.0012  OK(texto+hash)
+cuda_v4                    0.2790     0.2798     2.3810     0.0011  OK(texto+hash)

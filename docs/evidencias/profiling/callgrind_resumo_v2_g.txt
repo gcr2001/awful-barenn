@@ -1,0 +1,15 @@
+# callgrind --cache-sim=yes | v2_g | g++ -O3 -g -ffp-contract=off (v1,v2: -march=x86-64-v3) | dataset padrao (51 epocas)
+1,315,103,925 (100.0%) 352,034,781 (100.0%) 170,681,161 (100.0%) 863,795 (100.0%) 8,009 (100.0%)  PROGRAM TOTALS
+Ir                   Dr                   Dw                   D1mr             DLmr            file:function
+--------------------------------------------------------------------------------
+871,335,454 (66.26%) 223,822,380 (63.58%) 102,784,242 (60.22%) 788,682 (91.30%)     2 ( 0.02%)  src/rede_simd.hpp:main
+ 63,608,365 ( 4.84%)  11,824,944 ( 3.36%)   7,034,645 ( 4.12%)      44 ( 0.01%)     3 ( 0.04%)  ???:____strtof_l_internal [/usr/lib64/libc.so.6]
+ 54,949,902 ( 4.18%)  15,674,671 ( 4.45%)  12,087,912 ( 7.08%)      20 ( 0.00%)     .           ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::_M_extract_float(std::istreambuf_iterator<
+ 35,805,076 ( 2.72%)  14,589,538 ( 4.14%)   4,411,712 ( 2.58%)      18 ( 0.00%)     1 ( 0.01%)  ???:std::istream::sentry::sentry(std::istream&, bool) [/opt/ohpc/pub/compiler/gcc/14.2.0/lib64/libstdc++.so.6.0.33]
+ 34,169,600 ( 2.60%)  10,071,040 ( 2.86%)   7,912,960 ( 4.64%)       7 ( 0.00%)     .           ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::do_get(std::istreambuf_iterator<char, std:
+ 26,398,375 ( 2.01%)   8,228,689 ( 2.34%)   4,510,664 ( 2.64%)   7,130 ( 0.83%)     1 ( 0.01%)  ???:_int_free [/usr/lib64/libc.so.6]
+ 17,873,939 ( 1.36%)   5,416,832 ( 1.54%)   1,626,213 ( 0.95%)       2 ( 0.00%)     .           ???:std::istreambuf_iterator<char, std::char_traits<char> >::equal(std::istreambuf_iterator<char, std::char_traits<char> > c
+ 17,451,028 ( 1.33%)   4,471,370 ( 1.27%)   2,427,620 ( 1.42%)      98 ( 0.01%)     1 ( 0.01%)  ???:malloc [/usr/lib64/libc.so.6]
+ 16,904,960 ( 1.29%)   5,035,520 ( 1.43%)   2,877,440 ( 1.69%)      13 ( 0.00%)     .           ???:std::istream& std::istream::_M_extract<float>(float&) [/opt/ohpc/pub/compiler/gcc/14.2.0/lib64/libstdc++.so.6.0.33]
+ 13,249,224 ( 1.01%)   2,024,187 ( 0.57%)   1,656,153 ( 0.97%)       0              .           ???:round_and_return [/usr/lib64/libc.so.6]
+ 10,162,230 ( 0.77%)   3,251,912 ( 0.92%)   1,625,958 ( 0.95%)      96 ( 0.01%)     .           ???:free [/usr/lib64/libc.so.6]

@@ -1,0 +1,13 @@
+# clock64 por fase | CUDA v3 (kernel persistente, pesos em shared) | RTX A1000 | 1 epoca | inclui custo do clock64
+TH=128  ciclos medios por amostra (1 epoca, 3823 amostras):
+  F0 forward camada 1 (64->32)           1584 ciclos   30.3%
+  F1 forward camada 2 (32->16)            728 ciclos   13.9%
+  F2 forward camada 3 (16->10)            327 ciclos    6.2%
+  F3 perda + gradiente (1 thread)         156 ciclos    3.0%
+  F4 grad_in camada 3                     200 ciclos    3.8%
+  F5 atualiza camada 3 + delta2           330 ciclos    6.3%
+  F6 grad_in camada 2                     287 ciclos    5.5%
+  F7 atualiza camada 2 + delta1           414 ciclos    7.9%
+  F8 atualiza camada 1 (2048 pesos)      1108 ciclos   21.2%
+  F9 commit do prefetch                    98 ciclos    1.9%
+  TOTAL 5232 ciclos/amostra  = 3.579 us @1462 MHz
