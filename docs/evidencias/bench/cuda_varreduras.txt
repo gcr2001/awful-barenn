@@ -1,0 +1,8 @@
+# varredura de threads por bloco (TH) da cuda_v4, mesma alocacao
+# no: compute20  data: 2026-11-11 14:52:45
+# gpu: NVIDIA RTX A1000, 1462 MHz, 2100 MHz, 56
+binario                treino_min treino_med   wall_med  carga_med  corretude
+cuda_v4_th64               0.2759     0.2790     2.3984     0.0016  OK(texto+hash)
+cuda_v4                    0.2769     0.2770     2.3972     0.0016  OK(texto+hash)
+cuda_v4_th256              0.2875     0.2881     2.4026     0.0016  OK(texto+hash)
+cuda_v4_th512              0.3194     0.3204     2.4402     0.0016  OK(texto+hash)

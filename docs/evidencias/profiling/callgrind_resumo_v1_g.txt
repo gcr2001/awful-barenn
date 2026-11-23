@@ -1,0 +1,10 @@
+# callgrind --cache-sim=yes | v1_g | g++ -O3 -g -ffp-contract=off (v1,v2: -march=x86-64-v3) | dataset padrao (51 epocas)
+3,350,584,222 (100.0%) 663,967,198 (100.0%) 193,208,911 (100.0%) 863,624 (100.0%) 7,995 (100.0%)  PROGRAM TOTALS
+Ir                     Dr                   Dw                   D1mr             DLmr            file:function
+--------------------------------------------------------------------------------
+2,885,761,611 (86.13%) 532,052,307 (80.13%) 121,872,052 (63.08%) 800,007 (92.63%)     1 ( 0.01%)  src/cpu_v1.cpp:main [/home/gabrielcr2/scratch/barenn/prof/v1_g]
+   63,608,365 ( 1.90%)  11,824,944 ( 1.78%)   7,034,645 ( 3.64%)      44 ( 0.01%)     3 ( 0.04%)  ???:____strtof_l_internal [/usr/lib64/libc.so.6]
+   54,949,902 ( 1.64%)  15,674,671 ( 2.36%)  12,087,912 ( 6.26%)      18 ( 0.00%)     .           ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::_M_extract_float(std::istreambuf_iterato
+   35,805,076 ( 1.07%)  14,589,538 ( 2.20%)   4,411,712 ( 2.28%)      18 ( 0.00%)     1 ( 0.01%)  ???:std::istream::sentry::sentry(std::istream&, bool) [/opt/ohpc/pub/compiler/gcc/14.2.0/lib64/libstdc++.so.6.0.33]
+
+--------------------------------------------------------------------------------

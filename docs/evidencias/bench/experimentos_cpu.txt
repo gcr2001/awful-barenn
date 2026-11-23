@@ -1,0 +1,11 @@
+## Experimento: custo de uma regiao paralela OpenMP (fork/join)
+threads=1  latencia de uma regiao paralela vazia: 0.151 us
+threads=2  latencia de uma regiao paralela vazia: 1.870 us
+threads=4  latencia de uma regiao paralela vazia: 5.549 us
+threads=8  latencia de uma regiao paralela vazia: 12.042 us
+
+## Experimento: OpenMP dentro da amostra vs v2 serial
+threads=2  Tempo de treino 0.8650 s  (HASH_PESOS 366b333cd5264116)
+threads=2  Tempo de treino 0.8795 s  (HASH_PESOS 366b333cd5264116)
+threads=2  Tempo de treino 0.8522 s  (HASH_PESOS 366b333cd5264116)
+# referencia: CPU v2 serial (mesmo no, consolidado_no_cpu.txt) treino ~0.0367 s

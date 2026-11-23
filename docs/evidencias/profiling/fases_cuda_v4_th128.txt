@@ -1,0 +1,10 @@
+# clock64 por fase | CUDA v4 | RTX A1000 | 1 epoca | inclui custo do clock64
+TH=128  ciclos medios por amostra (1 epoca, 3823 amostras):
+  F0 forward L1 (+barreira)               532 ciclos   22.3%
+  F1 forward L2                           276 ciclos   11.5%
+  F2 forward L3                           211 ciclos    8.8%
+  F3 A: grad_in L3 || perda               213 ciclos    8.9%
+  F4 B: atualiza L3 || grad_in L2         464 ciclos   19.4%
+  F5 C: atualiza L2 || delta1             201 ciclos    8.4%
+  F6 D: atualiza L1 + prefetch            494 ciclos   20.7%
+  TOTAL 2391 ciclos/amostra = 1.635 us @1462 MHz

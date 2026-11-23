@@ -1,0 +1,6 @@
+# no: compute10  data: 2026-11-11 14:51:25
+binario                treino_min treino_med   wall_med  carga_med  corretude
+base_O0                    5.2988     5.3128     5.3592          -  OK(texto)
+base_O2                    0.4698     0.4708     0.4958          -  OK(texto)
+base_O3                    0.3611     0.3621     0.3871          -  OK(texto)
+base_O3_v3                 0.4079     0.4086     0.4338          -  OK(texto)

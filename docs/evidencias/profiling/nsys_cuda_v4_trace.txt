@@ -1,0 +1,20 @@
+Start (ns),Duration (ns),CorrId,GrdX,GrdY,GrdZ,BlkX,BlkY,BlkZ,Reg/Trd,StcSMem (MB),DymSMem (MB),Bytes (MB),Throughput (MB/s),SrcMemKd,DstMemKd,Device,Ctx,GreenCtx,Strm,Name
+155770826,79103,133,,,,,,,,,,0.979,12371.595,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155856201,1600,134,,,,,,,,,,0.015,9557.500,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155861897,864,135,,,,,,,,,,0.008,9481.478,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155866281,416,136,,,,,,,,,,0.000,307.692,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155870217,512,137,,,,,,,,,,0.002,4250.000,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155874057,384,138,,,,,,,,,,0.000,166.667,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155877929,448,139,,,,,,,,,,0.001,1571.428,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155881705,384,140,,,,,,,,,,0.000,104.167,Pageable,Device,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Host-to-Device]
+155940552,39807,148,,,,,,,,,,0.460,11556.464,Pinned,Device,NVIDIA RTX A1000 (0),1,,14,[CUDA memcpy Host-to-Device]
+155964487,268891725,151,1,1,1,128,1,1,92,0.013,0.000,,,,,NVIDIA RTX A1000 (0),1,,13,"void k_treino4<(int)128>(const float *, const int *, int, int, float, float *, float *, float *, float *, float *, 
+424862356,158941,156,15,1,1,128,1,1,48,0.000,0.000,,,,,NVIDIA RTX A1000 (0),1,,13,"Barenn::k_avaliar(const float *, int, const float *, const float *, const float *, const float *, const float *, cons
+425033393,1216,162,,,,,,,,,,0.000,335.526,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
+425039697,6144,163,,,,,,,,,,0.072,11699.189,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
+425057072,1088,164,,,,,,,,,,0.008,7529.406,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
+425067728,1056,165,,,,,,,,,,0.000,121.212,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
+425073040,832,166,,,,,,,,,,0.002,2615.384,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
+425078192,768,167,,,,,,,,,,0.000,83.333,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
+425083088,800,168,,,,,,,,,,0.001,880.000,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
+425088304,896,169,,,,,,,,,,0.000,44.643,Device,Pageable,NVIDIA RTX A1000 (0),1,,7,[CUDA memcpy Device-to-Host]
