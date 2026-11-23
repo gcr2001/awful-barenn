@@ -63,12 +63,12 @@ Leitura (x100): legado 2220,7 ms; v3 com T=1/2/4/8/16 = 109,5 / 64,6 / 46,1 / 36
 ## 6. Análise técnica
 
 ### 6.1 CPU: gargalo é instrução, não memória
-Callgrind no legado (`-O2 -g`, 14,03 G Ir): `Backward` 67,4 %, `main` 23,8 %; cache miss 0 % (2.720 pesos = 10,9 KB cabem na L1). 75 % do laço de `grad_in` era trabalho morto (o gradiente da camada 1 é descartado). v1: 3,35 G Ir. v2: 1,315 G Ir; passo por amostra de 42,7 k para 4,46 k instruções, ≈ 90 GFLOP/s ≈ 75 % do pico não-FMA estimado de um núcleo.
+Callgrind no legado (`-O2 -g`, 14,03 G Ir): `Backward` 67,4 %, `main` 23,8 %; cache miss de leitura 0,04 % (2.720 pesos = 10,9 KB cabem na L1). 75 % do laço de `grad_in` era trabalho morto (o gradiente da camada 1 é descartado). v1: 3,35 G Ir. v2: 1,315 G Ir; passo por amostra de 42,7 k para 4,46 k instruções, ≈ 79 GFLOP/s em um núcleo (14.944 FLOP × 194.973 passos / 0,0367 s). O teto exato do núcleo não foi medido, então não há percentual do pico.
 
 ### 6.2 Amdahl no treino
-O SGD amostra-a-amostra é uma cadeia de dependência. Só leitura e avaliação são paralelizáveis sem mudar o resultado (carga 22,3 → 0,6 ms). O treino, ~90 % do tempo, é serial; mini-batch/Hogwild mudariam algoritmo e hash, então ficam como trabalho futuro.
+O SGD amostra-a-amostra é uma cadeia de dependência. Só leitura e avaliação são paralelizáveis sem mudar o resultado (carga 22,3 → 0,6 ms). O treino, 93 % do wall (0,0382 de 0,0410 s), é serial; mini-batch/Hogwild mudariam algoritmo e hash, então ficam como trabalho futuro.
 
-OpenMP *dentro* da amostra: 11,7–13,9× mais lento (serial 0,0367 s; 2 threads 0,4268 s spin / 1,4352 s padrão; região paralela vazia 0,42–5,4 µs contra 0,19 µs de trabalho por amostra).
+OpenMP *dentro* da amostra: 12× a 39× mais lento em três rodadas (serial 0,0367 s; 2 threads 0,4268 s com espera ativa, 1,4352 s e 0,865 s com a política padrão; região paralela vazia de 0,42 a 12,0 µs conforme threads e política, contra 0,19 µs de trabalho por amostra).
 
 ![OpenMP dentro da amostra](img/openmp_dentro_da_amostra.png)
 

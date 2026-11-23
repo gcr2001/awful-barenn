@@ -13,4 +13,4 @@ Paralelizar só o que é exato: parsing do arquivo (`leitura_rapida.hpp`, testad
 | compute10 | optdigits.tra | carga 22,3 ms; treino 0,0367 s |
 | compute20 | x100 (382.300 amostras) | leitura legado 2220,7 ms |
 ## FECHAMENTO (colar como comentário ao fechar, com a tag)
-Tag `v0.4-cpu-multicore`. Carga 22,3 → 0,6 ms; wall 0,380 → 0,041 s (9,27×). x100: leitura 2220,7 → 36,2 ms (8 threads). OpenMP dentro da amostra: 11,7–13,9× mais lento (região vazia 0,42–5,4 µs vs 0,19 µs de trabalho). Hash idêntico.
+Tag `v0.4-cpu-multicore`. Carga 22,3 → 0,6 ms; wall 0,380 → 0,041 s (9,27×). x100: leitura 2220,7 → 36,2 ms (8 threads). OpenMP dentro da amostra: 12× a 39× mais lento em três rodadas (região vazia 0,42–12,0 µs vs 0,19 µs de trabalho). Hash idêntico.

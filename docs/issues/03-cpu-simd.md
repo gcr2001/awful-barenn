@@ -12,4 +12,4 @@ Transpor para `[entrada][saída]` e vetorizar **entre neurônios**: cada lane so
 |:---:|:---:|:---:|
 | compute10, i7-13700 | optdigits.tra | v1: treino 0,1693 s; 3,35 G Ir |
 ## FECHAMENTO (colar como comentário ao fechar, com a tag)
-Tag `v0.3-cpu-simd`. Treino 0,0367 s (9,65× sobre o legado, 4,6× sobre v1), 1,315 G Ir; passo por amostra 42,7 k → 4,46 k instruções; ≈ 90 GFLOP/s. Hash idêntico.
+Tag `v0.3-cpu-simd`. Treino 0,0367 s (9,65× sobre o legado, 4,6× sobre v1), 1,315 G Ir; passo por amostra 42,7 k → 4,46 k instruções; ≈ 79 GFLOP/s. Hash idêntico.

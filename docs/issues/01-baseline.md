@@ -14,7 +14,7 @@ Sem documentação, o primeiro passo é medir. `valgrind --tool=callgrind --cach
 | `sum += delta[j] * weights[j][i]` (grad_in) | 2,12 G | 15,1 % |
 | `sum += input[j] * weights[i][j]` (forward) | 1,61 G | 11,5 % |
 
-Cache miss D1/LL = **0,0 %**: pesos (2.720 floats = 10,9 KB) cabem na L1; o custo é volume de instruções. `l1.Backward` devolve o `grad_in` da primeira camada, que `main` descarta: 75 % do laço de grad_in é trabalho morto. Além disso, `-O3 -march=native` (FMA) muda o hash dos pesos (`24d050fe…`) com a mesma acurácia impressa (95,5 %): comparar a saída impressa não prova equivalência.
+Cache miss de leitura D1 = **0,04 %** (LL ≈ 0): pesos (2.720 floats = 10,9 KB) cabem na L1; o custo é volume de instruções. `l1.Backward` devolve o `grad_in` da primeira camada, que `main` descarta: 75 % do laço de grad_in é trabalho morto. Além disso, `-O3 -march=native` (FMA) muda o hash dos pesos (`24d050fe…`) com a mesma acurácia impressa (95,5 %): comparar a saída impressa não prova equivalência.
 ## Hipótese:  Qual conceito técnico você pretende aplicar para resolver esse gargalo?
 Este bloco **não altera `barenn.cpp`**. Cria o que torna os próximos blocos verificáveis: `scripts/bench.sh` (N repetições, min/mediana/média em nó exclusivo), hash FNV-1a dos pesos finais e perdas por época como critério de corretude bit a bit (`ref/`), `scripts/instrumentar_baseline.sh` e Makefile. Política: nenhuma otimização pode alterar o hash (sem FMA, sem `-ffast-math`, sem reassociar somas).
 ## Métrica base: Qual é o tempo ou custo de processamento atual dessa rotina?

@@ -17,8 +17,8 @@ Linhas CPU medidas no nó de CPU; linhas CUDA comparadas ao legado do nó de GPU
 
 ## Achados principais
 
-- **Gargalo da CPU = instruções, não memória.** Callgrind: `Backward` 67 %, cache miss 0 %; 75 % do cálculo de `grad_in` era trabalho morto. SIMD entre neurônios (sem reassociar a soma, sem FMA) dá 9,65×.
-- **O SGD é sequencial** (cada amostra depende dos pesos da anterior). Só leitura/avaliação são paralelizáveis com resultado exato; OpenMP dentro da amostra foi 12–14× mais lento (medido).
+- **Gargalo da CPU = instruções, não memória.** Callgrind: `Backward` 67 %, cache miss de leitura 0,04 %; 75 % do cálculo de `grad_in` era trabalho morto. SIMD entre neurônios (sem reassociar a soma, sem FMA) dá 9,65×.
+- **O SGD é sequencial** (cada amostra depende dos pesos da anterior). Só leitura/avaliação são paralelizáveis com resultado exato; OpenMP dentro da amostra foi 12× a 39× mais lento (três rodadas medidas).
 - **A GPU não vence a CPU otimizada**: 2.720 pesos e ~15 k FLOP por passo, 15 k+ passos seriais, então o custo é latência por passo. CUDA v4 é 13× melhor que o v1 (nsys + `clock64()`), mas 7,2× mais lenta que a CPU v2. No dataset 100× maior: CPU v3 3,81 s, CUDA v4 24,40 s, legado 30,57 s.
 - Acelerar a GPU de verdade exigiria mini-batch/Hogwild, que muda o algoritmo e o resultado (trabalho futuro).
 
