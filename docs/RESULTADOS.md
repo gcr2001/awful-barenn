@@ -6,7 +6,7 @@ Os números vêm de `docs/evidencias/` (saídas brutas) e podem ser regerados co
 
 - **Corretude primeiro.** Toda versão imprime `HASH_PESOS` e `HASH_PERDAS` (FNV-1a sobre os bits dos pesos finais e das perdas por época, `BARENN_HASH=1`). Referência do legado: `HASH_PESOS 366b333cd5264116`, `HASH_PERDAS 0b1dad0f07974985` (`ref/`). No dataset x100: `cd782a2c8237fa54` / `bea1bb97fdb3134a`. Nenhum tempo é reportado sem hash idêntico.
 - **Política numérica.** A ordem da soma por neurônio é preservada (vetoriza-se *entre* neurônios, nunca se reassocia a soma). `-ffp-contract=off`, sem `-ffast-math`; na GPU `--fmad=false`. FMA muda o hash (`24d050fe…`), mesmo com acurácia impressa igual (95,5 %).
-- **Medição.** Sempre `srun --exclusive --ntasks=1`; 9 repetições, mediana. Versões comparadas na **mesma alocação** (`scripts/comparar.sh`), pois a variação entre nós/clock é ~10 % (clock da GPU oscila 1462 ↔ 2100 MHz).
+- **Medição.** Sempre `srun --exclusive --ntasks=1`; 9 repetições, mediana. Os jobs `slurm/cpu.slurm`, `slurm/gpu.slurm` e `slurm/x100.slurm` (a partir da `master`, posteriores à tag `v1.0-entrega`) reproduzem as tabelas, registram o ambiente (commit, nó, CPU, GPU, compiladores, flags) e `scripts/bench.sh` passou a reportar também o desvio padrão amostral (`treino_dp` em `scripts/comparar.sh`). Versões comparadas na **mesma alocação** (`scripts/comparar.sh`), pois a variação entre nós/clock é ~10 % (clock da GPU oscila 1462 ↔ 2100 MHz).
 - **Treino** = só o laço de épocas; **wall** = processo inteiro (leitura, avaliação e, na GPU, ≈1,7–1,9 s de inicialização do contexto CUDA).
 - Compilação só no nó de login (nós de computação sem headers/valgrind).
 

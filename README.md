@@ -33,6 +33,7 @@ Linhas CPU medidas no nó de CPU; linhas CUDA comparadas ao legado do nó de GPU
 | Gráficos | [docs/img/](docs/img/) |
 | Código CPU / CUDA | [src/](src/) |
 | Harness e scripts | [scripts/](scripts/), [Makefile](Makefile), [ref/](ref/) |
+| Jobs Slurm (CPU, GPU, x100) | [slurm/](slurm/) |
 | Testes e experimentos (OpenMP, CUDA Graph) | [tests/](tests/), [experimentos/](experimentos/) |
 
 Limitações: Nsight Compute indisponível no Franky (`ERR_NVGPUCTRPERM`); uma única GPU; Santos Dumont não rodado.
