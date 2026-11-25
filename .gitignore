@@ -7,3 +7,5 @@ dados/
 *.sqlite
 *.nsys-rep
 *.ncu-rep
+# Saidas dos jobs em slurm/
+barenn-*.out
