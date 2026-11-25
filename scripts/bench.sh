@@ -2,8 +2,8 @@
 # Mede um binario do Barenn de forma reproduzivel e confere a corretude.
 #
 # Uso:   scripts/bench.sh <binario> [repeticoes=7] [args do binario...]
-# Saida: min / mediana / media do "Tempo de treino" e do tempo total (wall),
-#        alem de OK/DIVERGE para (a) a saida textual e (b) os hashes bit a bit
+# Saida: min / mediana / media / max / desvio padrao do "Tempo de treino" e do
+#        tempo total (wall), alem de OK/DIVERGE para (a) a saida textual e (b) os hashes bit a bit
 #        em relacao a ref/ (gerada a partir do legado).
 #
 # Rodar a partir da raiz do repositorio (usa optdigits.tra/.tes do diretorio
@@ -38,9 +38,11 @@ done
 
 resumo() { # $1=arquivo $2=rotulo
   [ -s "$1" ] || { printf "%-24s (nao reportado)\n" "$2"; return; }
-  sort -n "$1" | awk -v r="$2" '{v[NR]=$1; s+=$1}
-    END{m=(NR%2)?v[(NR+1)/2]:(v[NR/2]+v[NR/2+1])/2;
-        printf "%-24s min=%.4f  mediana=%.4f  media=%.4f  max=%.4f  (n=%d)\n", r, v[1], m, s/NR, v[NR], NR}'
+  # desvio = desvio padrao amostral (divide por n-1); 0 quando n=1.
+  sort -n "$1" | awk -v r="$2" '{v[NR]=$1; s+=$1; s2+=$1*$1}
+    END{m=(NR%2)?v[(NR+1)/2]:(v[NR/2]+v[NR/2+1])/2; mu=s/NR;
+        var=(NR>1)?(s2-NR*mu*mu)/(NR-1):0; if(var<0)var=0;
+        printf "%-24s min=%.4f  mediana=%.4f  media=%.4f  max=%.4f  desvio=%.4f  (n=%d)\n", r, v[1], m, mu, v[NR], sqrt(var), NR}'
 }
 echo "== $BIN | repeticoes=$REP | args=${ARGS[*]:-<padrao>} =="
 resumo "$tmp/treino" "Tempo de treino (s)"
